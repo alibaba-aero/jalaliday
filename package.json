@@ -1,0 +1,58 @@
+{
+  "name": "jalaliday",
+  "version": "0.0.0",
+  "description": "Persian (Jalali, Khorshidi) Plugin for Day.js",
+  "main": "dist/jalaliday.cjs.min.js",
+  "web": "dist/jalaliday.min.js",
+  "module": "dist/jalaliday.es.js",
+  "jsnext:main": "dist/jalaliday.es.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint src/* test/* build/*",
+    "build": "bili",
+    "release": "standard-version && git push --follow-tags && npm publish",
+    "prepublishOnly": "npm run build"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "jest": {
+    "roots": [
+      "test"
+    ],
+    "testRegex": "test/(.*?/)?.*test.js$",
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*"
+    ]
+  },
+  "keywords": [
+    "dayjs",
+    "date",
+    "time",
+    "immutable",
+    "moment",
+    "jalali"
+  ],
+  "author": "Ahad Birang",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alibaba-aero/jalaliday.git"
+  },
+  "devDependencies": {
+    "bili": "^3.1.2",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-jest": "^21.15.0",
+    "jest": "^22.4.3",
+    "mockdate": "^2.0.2",
+    "pre-commit": "^1.2.2",
+    "standard-version": "latest"
+  },
+  "dependencies": {
+    "dayjs": "^1.6.3"
+  }
+}

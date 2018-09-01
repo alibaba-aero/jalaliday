@@ -1,0 +1,17 @@
+# OSX
+.DS_Store
+
+# IDE
+.idea
+
+# npm
+node_modules
+
+# jest
+coverage
+
+# build
+dist
+
+#dev
+demo.js
