@@ -17,6 +17,8 @@ export default (o, Dayjs, dayjs) => {
   const oldDaysInMonth = proto.daysInMonth
 
   dayjs.$C = 'gregory'
+  // First Day Of Week
+  dayjs.$fdow = 6 // 0: sunday, ...
 
   dayjs.calendar = function (calendar) {
     dayjs.$C = calendar
@@ -89,6 +91,7 @@ export default (o, Dayjs, dayjs) => {
       const ins = wrapper(new Date(gy, gm - 1, gd), this)
       return isStartOf ? ins : ins.endOf(C.D)
     }
+    const WModifier = (this.$W + (7 - dayjs.$fdow)) % 7
     switch (unit) {
       case C.Y:
         return isStartOf ? instanceFactory(1, 0) :
@@ -97,7 +100,8 @@ export default (o, Dayjs, dayjs) => {
         return isStartOf ? instanceFactory(1, this.$jM) :
           instanceFactory(0, this.$jM + 1)
       case C.W:
-        return oldStartOf.bind(this)('week', startOf).add(-1, 'day')
+        return isStartOf ? instanceFactory(this.$jD - WModifier, this.$jM) :
+          instanceFactory(this.$jD + (6 - WModifier), this.$jM)
       default:
         return oldStartOf.bind(this)(units, startOf)
     }
