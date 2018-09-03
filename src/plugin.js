@@ -13,7 +13,7 @@ export default (o, Dayjs, dayjs) => {
   const oldDiff = proto.diff
   const oldYear = proto.year
   const oldMonth = proto.month
-  const oldDay = proto.dat
+  const oldDate = proto.date
   const oldDaysInMonth = proto.daysInMonth
 
   dayjs.$C = 'gregory'
@@ -227,9 +227,9 @@ export default (o, Dayjs, dayjs) => {
     return this.$jM
   }
 
-  proto.day = function () {
+  proto.date = function () {
     if (!this.isJalali()) {
-      return oldDay.bind(this)()
+      return oldDate.bind(this)()
     }
     return this.$jD
   }
