@@ -25,7 +25,10 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*"
-    ]
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/jest.transform.js"
+    }
   },
   "keywords": [
     "dayjs",
@@ -42,6 +45,7 @@
     "url": "https://github.com/alibaba-aero/jalaliday.git"
   },
   "devDependencies": {
+    "babel-preset-env": "^1.7.0",
     "bili": "^3.1.2",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
