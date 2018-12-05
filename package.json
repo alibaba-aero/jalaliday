@@ -53,6 +53,6 @@
     "standard-version": "latest"
   },
   "dependencies": {
-    "dayjs": "^1.6.3"
+    "dayjs": "^1.7.7"
   }
 }
