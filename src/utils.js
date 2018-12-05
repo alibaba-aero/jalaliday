@@ -6,7 +6,7 @@ const padStart = (string, length, pad) => {
 
 const monthDiff = (a, b) => {
   // function from moment.js in order to keep the same result
-  const wholeMonthDiff = ((b.Year() - a.Year()) * 12) + (b.Month() - a.Month())
+  const wholeMonthDiff = ((b.year() - a.year()) * 12) + (b.month() - a.month())
   const anchor = a.clone().add(wholeMonthDiff, 'months')
   const c = b - anchor < 0
   const anchor2 = a.clone().add(wholeMonthDiff + (c ? -1 : 1), 'months')
