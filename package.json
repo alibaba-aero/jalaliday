@@ -10,7 +10,7 @@
     "test": "jest",
     "lint": "eslint src/* test/* build/*",
     "build": "bili",
-    "release": "standard-version && git push --follow-tags && npm publish",
+    "release": "standard-version $* && git push --follow-tags && npm publish",
     "prepublishOnly": "npm run build"
   },
   "pre-commit": [
