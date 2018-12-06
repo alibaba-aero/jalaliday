@@ -39,7 +39,7 @@ export default (o, Dayjs, dayjs) => {
   }
 
   dayjs.en.jmonths = 'Farvardin_Ordibehesht_Khordaad_Tir_Mordaad_Shahrivar_Mehr_Aabaan_Aazar_Dey_Bahman_Esfand'.split('_')
-  dayjs.locale(C.fa)
+  dayjs.locale('fa', C.fa, true)
 
 
   const wrapper = (date, instance) => dayjs(date, {
