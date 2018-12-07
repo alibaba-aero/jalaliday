@@ -1,9 +1,9 @@
 import jdate from './calendar'
 import * as C from './constant'
-import Utils from './utils'
 
 export default (o, Dayjs, dayjs) => {
   const proto = Dayjs.prototype
+  const U = proto.$utils()
   const oldParse = proto.parse
   const oldInit = proto.init
   const oldStartOf = proto.startOf
@@ -84,8 +84,8 @@ export default (o, Dayjs, dayjs) => {
     if (!this.isJalali()) {
       return oldStartOf.bind(this)(units, startOf)
     }
-    const isStartOf = !Utils.isUndefined(startOf) ? startOf : true
-    const unit = Utils.prettyUnit(units)
+    const isStartOf = !U.isUndefined(startOf) ? startOf : true
+    const unit = U.prettyUnit(units)
     const instanceFactory = (d, m, y = this.$jy) => {
       const [gy, gm, gd] = jdate.toGregorian(y, m + 1, d)
       const ins = wrapper(new Date(gy, gm - 1, gd), this)
@@ -111,7 +111,7 @@ export default (o, Dayjs, dayjs) => {
     if (!this.isJalali()) {
       return old$Set.bind(this)(units, int)
     }
-    const unit = Utils.prettyUnit(units)
+    const unit = U.prettyUnit(units)
     const instanceFactory = (d, m, y = this.$jy) => {
       const [gy, gm, gd] = jdate.toGregorian(y, m + 1, d)
       this.$d.setDate(gd)
@@ -142,7 +142,7 @@ export default (o, Dayjs, dayjs) => {
     }
     number = Number(number) // eslint-disable-line no-param-reassign
     // units === 'ms' hard code here, will update in next release
-    const unit = (units && (units.length === 1 || units === 'ms')) ? units : Utils.prettyUnit(units)
+    const unit = (units && (units.length === 1 || units === 'ms')) ? units : U.prettyUnit(units)
     const instanceFactory = (u, n) => {
       const date = this.set(C.DATE, 1).set(u, n + number)
       return date.set(C.DATE, Math.min(this.$jD, date.daysInMonth()))
@@ -179,7 +179,7 @@ export default (o, Dayjs, dayjs) => {
         case 'M':
           return String(this.$jM + 1)
         case 'MM':
-          return Utils.padStart(this.$jM + 1, 2, '0')
+          return U.padStart(this.$jM + 1, 2, '0')
         case 'MMM':
           return jmonths[this.$jM].slice(0, 3)
         case 'MMMM':
@@ -187,7 +187,7 @@ export default (o, Dayjs, dayjs) => {
         case 'D':
           return String(this.$jD)
         case 'DD':
-          return Utils.padStart(this.$jD, 2, '0')
+          return U.padStart(this.$jD, 2, '0')
         default:
           return oldFormat.bind(this)(match, localeObject)
       }
@@ -198,9 +198,9 @@ export default (o, Dayjs, dayjs) => {
     if (!this.isJalali()) {
       return oldDiff.bind(this)(input, units, float)
     }
-    const unit = Utils.prettyUnit(units)
+    const unit = U.prettyUnit(units)
     const that = dayjs(input)
-    let result = Utils.monthDiff(this, that)
+    let result = U.monthDiff(this, that)
     switch (unit) {
       case C.Y:
         result /= 12
@@ -210,7 +210,7 @@ export default (o, Dayjs, dayjs) => {
       default: // milliseconds
         return oldDiff.bind(this)(input, units, float)
     }
-    return float ? result : Utils.absFloor(result)
+    return float ? result : U.absFloor(result)
   }
 
   proto.year = function () {
