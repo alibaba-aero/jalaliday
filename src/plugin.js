@@ -4,6 +4,22 @@ import * as C from './constant'
 export default (o, Dayjs, dayjs) => {
   const proto = Dayjs.prototype
   const U = proto.$utils()
+
+  const wrapperOfTruth = action => function (...args) {
+    const unsure = action.bind(this)(...args)
+    unsure.$C = this.$C
+    if (unsure.isJalali()) {
+      unsure.InitJalali()
+    }
+    return unsure
+  }
+
+  // keep calendar on date manipulation
+  proto.startOf = wrapperOfTruth(proto.startOf)
+  proto.endOf = wrapperOfTruth(proto.endOf)
+  proto.add = wrapperOfTruth(proto.add)
+  proto.subtract = wrapperOfTruth(proto.subtract)
+  proto.set = wrapperOfTruth(proto.set)
   const oldParse = proto.parse
   const oldInit = proto.init
   const oldStartOf = proto.startOf
@@ -42,15 +58,17 @@ export default (o, Dayjs, dayjs) => {
   dayjs.locale('fa', C.fa, true)
 
 
-  const wrapper = (date, instance) => dayjs(date, {
-    locale: instance.$L,
-    calendar: instance.$C
-  })
+  const wrapper = function (date, instance) {
+    return dayjs(date, {
+      locale: instance.$L,
+      calendar: instance.$C
+    })
+  }
 
   proto.init = function (cfg = {}) {
     oldInit.bind(this)(cfg)
 
-    this.$C = cfg.calendar || dayjs.$C
+    this.$C = cfg.calendar || this.$C || dayjs.$C
     if (this.isJalali()) {
       this.InitJalali()
     }
