@@ -1,6 +1,6 @@
 {
   "name": "jalaliday",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Persian (Jalali, Khorshidi) Plugin for Day.js",
   "main": "dist/jalaliday.cjs.min.js",
   "web": "dist/jalaliday.min.js",
@@ -17,6 +17,7 @@
     "lint"
   ],
   "jest": {
+    "testEnvironment": "node",
     "roots": [
       "test"
     ],

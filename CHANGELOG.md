@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/alibaba-aero/jalaliday/compare/v2.0.0...v2.0.1) (2018-12-07)
+
+
+### Bug Fixes
+
+* wrap dayjs functions to keep calendar on new instances ([f10e9fe](https://github.com/alibaba-aero/jalaliday/commit/f10e9fe))
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/alibaba-aero/jalaliday/compare/v1.1.0...v1.1.1) (2018-12-05)
 
