@@ -20,7 +20,7 @@ npm install --save jalaliday
 ```
 YARN
 ```
-yard add jalaliday
+yarn add jalaliday
 ```
 
 ## Usage
