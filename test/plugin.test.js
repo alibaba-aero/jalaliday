@@ -95,17 +95,31 @@ it('format', () => {
   expect(date.format('HH')).toEqual('00')
 })
 
+describe('add two date', () => {
+  let a = null
+  let b = null
+
+  beforeEach(() => {
+    a = dayjs('1397/06/01', { jalali: true })
+    b = dayjs('1397/09/10', { jalali: true })
+  })
+
+  it('add date', () => {
+    expect(a.add(100, 'day')).toEqual(b)
+  })
+})
+
 describe('diff two date', () => {
   let a = null
   let b = null
 
   beforeEach(() => {
-    a = dayjs()
-    b = dayjs().add(100, 'day')
+    a = dayjs('1397/06/01', { jalali: true })
+    b = dayjs('1397/09/10', { jalali: true })
   })
 
   it('diff(month)', () => {
-    expect(a.diff(b, 'month')).toEqual(-3)
+    expect(a.diff(b, 'month', false)).toEqual(-3)
   })
 
   it('diff(day)', () => {
