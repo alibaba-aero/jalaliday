@@ -57,6 +57,23 @@ export default (o, Dayjs, dayjs) => {
   dayjs.en.jmonths = 'Farvardin_Ordibehesht_Khordaad_Tir_Mordaad_Shahrivar_Mehr_Aabaan_Aazar_Dey_Bahman_Esfand'.split('_')
   dayjs.locale('fa', C.fa, true)
 
+  // for relativeTime plugin
+  dayjs.fa.relativeTime = {
+    future: 'در %s ثانیه‌ی آتی',
+    past: '%s پیش',
+    s: 'چند ثانیه پیش',
+    m: 'یک دقیقه',
+    mm: '%d دقیقه',
+    h: 'یک ساعت',
+    hh: '%d ساعت',
+    d: 'یک روز',
+    dd: '%d روز',
+    M: 'یک ماه',
+    MM: '%d ماه',
+    y: 'یک سال',
+    yy: '%d سال'
+  }
+
   const wrapper = function (date, instance) {
     return dayjs(date, {
       locale: instance.$L,
