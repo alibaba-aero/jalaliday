@@ -57,7 +57,6 @@ export default (o, Dayjs, dayjs) => {
   dayjs.en.jmonths = 'Farvardin_Ordibehesht_Khordaad_Tir_Mordaad_Shahrivar_Mehr_Aabaan_Aazar_Dey_Bahman_Esfand'.split('_')
   dayjs.locale('fa', C.fa, true)
 
-
   const wrapper = function (date, instance) {
     return dayjs(date, {
       locale: instance.$L,
@@ -77,9 +76,9 @@ export default (o, Dayjs, dayjs) => {
   proto.parse = function (cfg) {
     let reg
     // eslint-disable-next-line no-cond-assign
-    if (cfg.jalali && (typeof cfg.date === 'string')
-      && (/.*[^Z]$/i.test(cfg.date)) // looking for a better way
-      && (reg = cfg.date.match(C.REGEX_PARSE))) {
+    if (cfg.jalali && (typeof cfg.date === 'string') &&
+      (/.*[^Z]$/i.test(cfg.date)) && // looking for a better way
+      (reg = cfg.date.match(C.REGEX_PARSE))) {
       // 1397-08-08 or 13970808
       const [y, m, d] = jdate.toGregorian(
         parseInt(reg[1], 10),
@@ -112,14 +111,14 @@ export default (o, Dayjs, dayjs) => {
     const WModifier = (this.$W + (7 - dayjs.$fdow)) % 7
     switch (unit) {
       case C.Y:
-        return isStartOf ? instanceFactory(1, 0) :
-          instanceFactory(0, 0, this.$jy + 1)
+        return isStartOf ? instanceFactory(1, 0)
+          : instanceFactory(0, 0, this.$jy + 1)
       case C.M:
-        return isStartOf ? instanceFactory(1, this.$jM) :
-          instanceFactory(0, this.$jM + 1)
+        return isStartOf ? instanceFactory(1, this.$jM)
+          : instanceFactory(0, this.$jM + 1)
       case C.W:
-        return isStartOf ? instanceFactory(this.$jD - WModifier, this.$jM) :
-          instanceFactory(this.$jD + (6 - WModifier), this.$jM)
+        return isStartOf ? instanceFactory(this.$jD - WModifier, this.$jM)
+          : instanceFactory(this.$jD + (6 - WModifier), this.$jM)
       default:
         return oldStartOf.bind(this)(units, startOf)
     }
@@ -263,4 +262,3 @@ export default (o, Dayjs, dayjs) => {
     return wrapper(this.toDate(), this)
   }
 }
-
