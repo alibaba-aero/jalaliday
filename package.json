@@ -1,6 +1,6 @@
 {
   "name": "jalaliday",
-  "version": "2.0.1",
+  "version": "2.1.1",
   "description": "Persian (Jalali, Khorshidi) Plugin for Day.js",
   "main": "dist/jalaliday.cjs.min.js",
   "web": "dist/jalaliday.min.js",
