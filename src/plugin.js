@@ -31,6 +31,7 @@ export default (o, Dayjs, dayjs) => {
   const oldMonth = proto.month
   const oldDate = proto.date
   const oldDaysInMonth = proto.daysInMonth
+  const oldToArray = proto.toArray
 
   dayjs.$C = 'gregory'
   // First Day Of Week
@@ -256,6 +257,13 @@ export default (o, Dayjs, dayjs) => {
       return oldDaysInMonth.bind(this)()
     }
     return this.endOf(C.M).$jD
+  }
+
+  proto.toArray = function(){
+    if(!this.isJalali()){
+      return oldToArray.bind(this)()
+    }
+    return [this.$jy, this.$jM, this.$jD, this.$H, this.$m, this.$s, this.$ms]
   }
 
   proto.clone = function () {
