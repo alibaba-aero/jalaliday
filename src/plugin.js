@@ -259,8 +259,8 @@ export default (o, Dayjs, dayjs) => {
     return this.endOf(C.M).$jD
   }
 
-  proto.toArray = function(){
-    if(!this.isJalali()){
+  proto.toArray = function () {
+    if (!this.isJalali()) {
       return oldToArray.bind(this)()
     }
     return [this.$jy, this.$jM, this.$jD, this.$H, this.$m, this.$s, this.$ms]
