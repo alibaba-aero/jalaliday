@@ -116,7 +116,11 @@ export default (o, Dayjs, dayjs) => {
           : instanceFactory(0, 0, this.$jy + 1)
       case C.M:
         return isStartOf ? instanceFactory(1, this.$jM)
-          : instanceFactory(0, this.$jM + 1)
+          : instanceFactory(
+            0,
+            this.$jM + 1 >= 12 ? 0 : this.$jM + 1,
+            this.$jM + 1 >= 12 ? this.$jy + 1 : this.$jy
+          )
       case C.W:
         return isStartOf ? instanceFactory(this.$jD - WModifier, this.$jM)
           : instanceFactory(this.$jD + (6 - WModifier), this.$jM)
