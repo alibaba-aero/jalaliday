@@ -68,7 +68,6 @@ export default (o, Dayjs, dayjs) => {
   proto.init = function (cfg = {}) {
     oldInit.bind(this)(cfg)
 
-    this.$C = cfg.calendar || this.$C || dayjs.$C
     if (this.isJalali()) {
       this.InitJalali()
     }
@@ -76,6 +75,7 @@ export default (o, Dayjs, dayjs) => {
 
   proto.parse = function (cfg) {
     let reg
+    this.$C = cfg.calendar || this.$C || dayjs.$C
     // eslint-disable-next-line no-cond-assign
     if (cfg.jalali && (typeof cfg.date === 'string') &&
       (/.*[^Z]$/i.test(cfg.date)) && // looking for a better way
@@ -134,7 +134,7 @@ export default (o, Dayjs, dayjs) => {
       return old$Set.bind(this)(units, int)
     }
     const unit = U.prettyUnit(units)
-    const instanceFactory = (d, m, y = this.$jy) => {
+    const innerSetDate = (d, m, y = this.$jy) => {
       const [gy, gm, gd] = jdate.toGregorian(y, m + 1, d)
       this.$d.setDate(gd)
       this.$d.setMonth(gm - 1)
@@ -143,13 +143,13 @@ export default (o, Dayjs, dayjs) => {
     }
     switch (unit) {
       case C.DATE:
-        instanceFactory(int, this.$jM)
+        innerSetDate(int, this.$jM)
         break
       case C.M:
-        instanceFactory(this.$jD, int)
+        innerSetDate(this.$jD, int === -1 ? 11 : int, int === -1 ? this.$jy - 1 : this.$jy)
         break
       case C.Y:
-        instanceFactory(this.$jD, this.$jM, int)
+        innerSetDate(this.$jD, this.$jM, int)
         break
       default:
         return old$Set.bind(this)(units, int)
