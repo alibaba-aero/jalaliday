@@ -20,6 +20,18 @@ it('Extend dayjs', () => {
   expect(dayjs().$jy).toBeDefined()
 })
 
+it('Setting calendar converts date', () => {
+  const date = dayjs('1397/06/13', { jalali: true }).calendar('gregory')
+  expect(date.$y).toEqual(2018)
+  expect(date.$M).toEqual(8)
+  expect(date.$D).toEqual(4)
+
+  const date2 = dayjs('2018/09/04').calendar('jalali')
+  expect(date2.$jy).toEqual(1397)
+  expect(date2.$jM).toEqual(5)
+  expect(date2.$jD).toEqual(13)
+})
+
 describe('Parse Valid String', () => {
   // 2018-09-04
   const date = dayjs('1397/06/13', { jalali: true })
@@ -159,11 +171,16 @@ it('dayInMonth - months with 29 days', () => {
 })
 
 it('format', () => {
+  expect(dayjs('2018/09/03').calendar('gregory').format('YYYY/MM/DD')).toEqual('2018/09/03')
+
   const date = dayjs('1397/06/13', { jalali: true })
+  expect(date.format()).toEqual('1397-06-13T00:00:00+04:30')
+  expect(date.format('[Unformatted text]')).toEqual('Unformatted text')
   expect(date.format('YY')).toEqual(String(97))
   expect(date.format('YYYY')).toEqual(String(1397))
   expect(date.format('M')).toEqual('6')
   expect(date.format('MM')).toEqual('06')
+  expect(date.format('MMM')).toEqual('Sha')
   expect(date.format('MMMM')).toEqual('Shahrivar')
   expect(date.locale('fa').format('MMMM')).toEqual('شهریور')
   expect(date.format('DD')).toEqual('13')
@@ -187,12 +204,11 @@ describe('add two date', () => {
 })
 
 describe('diff two date', () => {
-  let a = null
-  let b = null
+  const a = dayjs('1397/06/01', { jalali: true })
+  const b = dayjs('1397/09/10', { jalali: true })
 
-  beforeEach(() => {
-    a = dayjs('1397/06/01', { jalali: true })
-    b = dayjs('1397/09/10', { jalali: true })
+  it('diff(float)', () => {
+    expect(a.diff(b, 'month', true)).toEqual(-3.3)
   })
 
   it('diff(month)', () => {
@@ -209,5 +225,110 @@ describe('diff two date', () => {
 
   it('diff(year)', () => {
     expect(a.diff(b, 'year')).toEqual(0)
+  })
+})
+
+describe('subtract', () => {
+  test('subtract 1 ms', () => {
+    const date = dayjs('1397/06/13', { jalali: true })
+    const date2 = date.subtract(1, 'ms')
+    expect(date2.year()).toEqual(date.year())
+    expect(date2.month()).toEqual(date.month())
+    expect(date2.date()).toEqual(date.date() - 1)
+    expect(date2.$ms).toEqual(999)
+  })
+
+  test('subtract 1 day in the middle of the month', () => {
+    const date = dayjs('1397/06/13', { jalali: true })
+    const date2 = date.subtract(1, 'day')
+    expect(date2.year()).toEqual(date.year())
+    expect(date2.month()).toEqual(date.month())
+    expect(date2.date()).toEqual(date.date() - 1)
+  })
+
+  test('subtract 1 day in the beginning of the month', () => {
+    const date = dayjs('1397/06/01', { jalali: true })
+    const date2 = date.subtract(1, 'day')
+    expect(date2.year()).toEqual(date.year())
+    expect(date2.month()).toEqual(date.month() - 1)
+    expect(date2.date()).toEqual(31)
+  })
+
+  test('subtract 1 month in the middle of the year', () => {
+    const date = dayjs('1397/06/13', { jalali: true })
+    const date2 = date.subtract(1, 'month')
+    expect(date2.year()).toEqual(date.year())
+    expect(date2.month()).toEqual(date.month() - 1)
+    expect(date2.date()).toEqual(date.date())
+  })
+
+  test('subtract 1 month in the beginning of the year', () => {
+    const date = dayjs('1397/01/13', { jalali: true })
+    const date2 = date.subtract(1, 'month')
+    expect(date2.year()).toEqual(date.year() - 1)
+    expect(date2.month()).toEqual(11)
+    expect(date2.date()).toEqual(date.date())
+  })
+
+  test('subtract 1 year', () => {
+    const date = dayjs('1397/01/13', { jalali: true })
+    const date2 = date.subtract(1, 'year')
+    expect(date2.year()).toEqual(date.year() - 1)
+    expect(date2.month()).toEqual(date.month())
+    expect(date2.date()).toEqual(date.date())
+  })
+})
+
+describe('add', () => {
+  test('add 1 day in the middle of the month', () => {
+    const date = dayjs('1397/06/13', { jalali: true })
+    const date2 = date.add(1, 'day')
+    expect(date2.year()).toEqual(date.year())
+    expect(date2.month()).toEqual(date.month())
+    expect(date2.date()).toEqual(date.date() + 1)
+  })
+
+  test('add 1 day in the end of the month', () => {
+    const date = dayjs('1397/06/31', { jalali: true })
+    const date2 = date.add(1, 'day')
+    expect(date2.year()).toEqual(date.year())
+    expect(date2.month()).toEqual(date.month() + 1)
+    expect(date2.date()).toEqual(1)
+  })
+
+  test('add 1 month in the middle of the year', () => {
+    const date = dayjs('1397/06/13', { jalali: true })
+    const date2 = date.add(1, 'month')
+    expect(date2.year()).toEqual(date.year())
+    expect(date2.month()).toEqual(date.month() + 1)
+    expect(date2.date()).toEqual(date.date())
+  })
+
+  test('add 1 month in the end of the year', () => {
+    const date = dayjs('1397/12/13', { jalali: true })
+    const date2 = date.add(1, 'month')
+    expect(date2.year()).toEqual(date.year() + 1)
+    expect(date2.month()).toEqual(0)
+    expect(date2.date()).toEqual(date.date())
+  })
+
+  test('add 1 year', () => {
+    const date = dayjs('1397/12/13', { jalali: true })
+    const date2 = date.add(1, 'year')
+    expect(date2.year()).toEqual(date.year() + 1)
+    expect(date2.month()).toEqual(date.month())
+    expect(date2.date()).toEqual(date.date())
+  })
+})
+
+describe('toArray', () => {
+  test('Convert date to array', () => {
+    const date = dayjs('2018/09/03').calendar('gregory')
+    expect(date.toArray()).toEqual([2018, 8, 3, 0, 0, 0, 0])
+  })
+
+  test('Convert date to array', () => {
+    const date = dayjs('1397/06/13', { jalali: true })
+    expect(date.toArray()).toEqual([1397, 5, 13, 0, 0, 0, 0])
   })
 })
