@@ -269,6 +269,14 @@ describe('subtract', () => {
     expect(date2.month()).toEqual(11)
     expect(date2.date()).toEqual(date.date())
   })
+  
+  test('subtract 17 months', () => {
+    const date = dayjs('1397/06/13', { jalali: true })
+    const date2 = date.subtract(17, 'month')
+    expect(date2.year()).toEqual(1396)
+    expect(date2.month()).toEqual(0)
+    expect(date2.date()).toEqual(date.date())
+  })
 
   test('subtract 1 month in the beginning of the year', () => {
     const date = dayjs('1397/01/13', { jalali: true })
