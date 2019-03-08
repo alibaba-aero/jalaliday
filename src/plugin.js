@@ -129,7 +129,12 @@ export default (o, Dayjs, dayjs) => {
     }
   }
 
-  proto.$set = function (units, int) { // private set
+  /**
+   * $set is called in private inside dayjs itself. dayjs uses this function
+   * to change dates when subtract, add and so on is called.
+   */
+  proto.$set = function (units, int) {
+    // private set
     if (!this.isJalali()) {
       return old$Set.bind(this)(units, int)
     }
@@ -146,7 +151,16 @@ export default (o, Dayjs, dayjs) => {
         innerSetDate(int, this.$jM)
         break
       case C.M:
-        innerSetDate(this.$jD, int === -1 ? 11 : int, int === -1 ? this.$jy - 1 : this.$jy)
+        // The following is for the edge case where month minus int results in
+        // negative year change. For example if monthIndex is 0 (Farvardin in
+        // jalali) and subtract is called with (1, 'month'), the int here will
+        // be -1 (0 - 1), and jdate doesn't support negative numbers very well.
+        // This way the edge case can be handled more gracefully.
+        innerSetDate(
+          this.$jD,
+          int < 0 ? 12 - ((int * -1) % 12) : int,
+          int < 0 ? this.$jy - Math.ceil((int * -1) / 12) : this.$jy
+        )
         break
       case C.Y:
         innerSetDate(this.$jD, this.$jM, int)
