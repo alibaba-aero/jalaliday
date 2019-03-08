@@ -33,6 +33,6 @@ jobs:
           command: yarn jest
 
       # Coverage
-      # - run:
-      #     name: Coverage
-command: yarn codecov
+      - run:
+          name: Coverage
+          command: yarn codecov
