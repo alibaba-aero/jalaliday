@@ -1,4 +1,3 @@
-
 import MockDate from 'mockdate'
 import dayjs from 'dayjs'
 import jalali from '../src'
@@ -262,6 +261,14 @@ describe('subtract', () => {
     expect(date2.date()).toEqual(date.date())
   })
 
+  test('add 11 months in the middle of the year', () => {
+    const date = dayjs('1396/06/13', { jalali: true })
+    const date2 = date.add(11, 'month')
+    expect(date2.year()).toEqual(date.year() + 1)
+    expect(date2.month()).toEqual(date.month() - 1)
+    expect(date2.date()).toEqual(date.date())
+  })
+
   test('subtract 18 months', () => {
     const date = dayjs('1397/06/13', { jalali: true })
     const date2 = date.subtract(18, 'month')
@@ -269,7 +276,7 @@ describe('subtract', () => {
     expect(date2.month()).toEqual(11)
     expect(date2.date()).toEqual(date.date())
   })
-  
+
   test('subtract 17 months', () => {
     const date = dayjs('1397/06/13', { jalali: true })
     const date2 = date.subtract(17, 'month')
@@ -283,6 +290,14 @@ describe('subtract', () => {
     const date2 = date.subtract(1, 'month')
     expect(date2.year()).toEqual(date.year() - 1)
     expect(date2.month()).toEqual(11)
+    expect(date2.date()).toEqual(date.date())
+  })
+
+  test('subtract 1 month in the beginning of the year', () => {
+    const date = dayjs('1397/01/01', { jalali: true })
+    const date2 = date.subtract(11, 'month')
+    expect(date2.year()).toEqual(date.year() - 1)
+    expect(date2.month()).toEqual(1)
     expect(date2.date()).toEqual(date.date())
   })
 

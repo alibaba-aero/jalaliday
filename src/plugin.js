@@ -130,8 +130,7 @@ export default (o, Dayjs, dayjs) => {
   }
 
   /**
-   * $set is called in private inside dayjs itself. dayjs uses this function
-   * to change dates when subtract, add and so on is called.
+   * $set is called in private inside dayjs itself.
    */
   proto.$set = function (units, int) {
     // private set
@@ -148,6 +147,7 @@ export default (o, Dayjs, dayjs) => {
     }
     switch (unit) {
       case C.DATE:
+      case C.D:
         innerSetDate(int, this.$jM)
         break
       case C.M:
@@ -156,11 +156,7 @@ export default (o, Dayjs, dayjs) => {
         // jalali) and subtract is called with (1, 'month'), the int here will
         // be -1 (0 - 1), and jdate doesn't support negative numbers very well.
         // This way the edge case can be handled more gracefully.
-        innerSetDate(
-          this.$jD,
-          int < 0 ? 12 - ((int * -1) % 12) : int,
-          int < 0 ? this.$jy - Math.ceil((int * -1) / 12) : this.$jy
-        )
+        innerSetDate(this.$jD, int)
         break
       case C.Y:
         innerSetDate(this.$jD, this.$jM, int)
@@ -184,6 +180,17 @@ export default (o, Dayjs, dayjs) => {
       return date.set(C.DATE, Math.min(this.$jD, date.daysInMonth()))
     }
     if (['M', C.M].indexOf(unit) > -1) {
+      // Handle subtract
+      if (number < 0) {
+        const y = Math.ceil((-number) / 12)
+        return this.add(-y, C.Y).add(number + (y * 12), C.M)
+      }
+      const n = this.$jM + number
+      // Handle add
+      if (n >= 12) {
+        const y = Math.floor(n / 12)
+        return this.add(y, C.Y).set(C.M, n - (y * 12))
+      }
       return instanceFactory(C.M, this.$jM)
     }
     if (['y', C.Y].indexOf(unit) > -1) {
