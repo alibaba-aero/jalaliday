@@ -82,9 +82,9 @@ export default (o, Dayjs, dayjs) => {
     let reg
     this.$C = cfg.calendar || this.$C || dayjs.$C
     // eslint-disable-next-line no-cond-assign
-    if (cfg.jalali && (typeof cfg.date === 'string') &&
-      (/.*[^Z]$/i.test(cfg.date)) && // looking for a better way
-      (reg = cfg.date.match(C.REGEX_PARSE))) {
+    if (cfg.jalali && (typeof cfg.date === 'string')
+      && (/.*[^Z]$/i.test(cfg.date)) // looking for a better way
+      && (reg = cfg.date.match(C.REGEX_PARSE))) {
       // 1397-08-08 or 13970808
       const [y, m, d] = jdate.G(
         parseInt(reg[1], 10),
