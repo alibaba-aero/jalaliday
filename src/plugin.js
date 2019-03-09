@@ -68,7 +68,6 @@ export default (o, Dayjs, dayjs) => {
   proto.init = function (cfg = {}) {
     oldInit.bind(this)(cfg)
 
-    this.$C = cfg.calendar || this.$C || dayjs.$C
     if (this.isJalali()) {
       this.InitJalali()
     }
@@ -76,6 +75,7 @@ export default (o, Dayjs, dayjs) => {
 
   proto.parse = function (cfg) {
     let reg
+    this.$C = cfg.calendar || this.$C || dayjs.$C
     // eslint-disable-next-line no-cond-assign
     if (cfg.jalali && (typeof cfg.date === 'string') &&
       (/.*[^Z]$/i.test(cfg.date)) && // looking for a better way
@@ -116,7 +116,11 @@ export default (o, Dayjs, dayjs) => {
           : instanceFactory(0, 0, this.$jy + 1)
       case C.M:
         return isStartOf ? instanceFactory(1, this.$jM)
-          : instanceFactory(0, this.$jM + 1)
+          : instanceFactory(
+            0,
+            this.$jM + 1 >= 12 ? 0 : this.$jM + 1,
+            this.$jM + 1 >= 12 ? this.$jy + 1 : this.$jy
+          )
       case C.W:
         return isStartOf ? instanceFactory(this.$jD - WModifier, this.$jM)
           : instanceFactory(this.$jD + (6 - WModifier), this.$jM)
@@ -130,7 +134,7 @@ export default (o, Dayjs, dayjs) => {
       return old$Set.bind(this)(units, int)
     }
     const unit = U.prettyUnit(units)
-    const instanceFactory = (d, m, y = this.$jy) => {
+    const innerSetDate = (d, m, y = this.$jy) => {
       const [gy, gm, gd] = jdate.toGregorian(y, m + 1, d)
       this.$d.setDate(gd)
       this.$d.setMonth(gm - 1)
@@ -139,13 +143,14 @@ export default (o, Dayjs, dayjs) => {
     }
     switch (unit) {
       case C.DATE:
-        instanceFactory(int, this.$jM)
+      case C.D:
+        innerSetDate(int, this.$jM)
         break
       case C.M:
-        instanceFactory(this.$jD, int)
+        innerSetDate(this.$jD, int)
         break
       case C.Y:
-        instanceFactory(this.$jD, this.$jM, int)
+        innerSetDate(this.$jD, this.$jM, int)
         break
       default:
         return old$Set.bind(this)(units, int)
@@ -166,6 +171,17 @@ export default (o, Dayjs, dayjs) => {
       return date.set(C.DATE, Math.min(this.$jD, date.daysInMonth()))
     }
     if (['M', C.M].indexOf(unit) > -1) {
+      // Handle subtract
+      if (number < 0) {
+        const y = Math.ceil((-number) / 12)
+        return this.add(-y, C.Y).add(number + (y * 12), C.M)
+      }
+      const n = this.$jM + number
+      // Handle add
+      if (n >= 12) {
+        const y = Math.floor(n / 12)
+        return this.add(y, C.Y).set(C.M, n - (y * 12))
+      }
       return instanceFactory(C.M, this.$jM)
     }
     if (['y', C.Y].indexOf(unit) > -1) {
