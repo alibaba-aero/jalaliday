@@ -173,7 +173,7 @@ it('format', () => {
   expect(dayjs('2018/09/03').calendar('gregory').format('YYYY/MM/DD')).toEqual('2018/09/03')
 
   const date = dayjs('1397/06/13', { jalali: true })
-  expect(date.format()).toEqual('1397-06-13T00:00:00+04:30')
+  expect(date.format()).toContain('1397-06-13T00:00:00+')
   expect(date.format('[Unformatted text]')).toEqual('Unformatted text')
   expect(date.format('YY')).toEqual(String(97))
   expect(date.format('YYYY')).toEqual(String(1397))
