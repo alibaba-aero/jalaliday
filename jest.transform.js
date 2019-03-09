@@ -2,5 +2,5 @@
 // babel presets, so we don't have to use .babelrc.
 
 module.exports = require('babel-jest').createTransformer({
-  presets: ['env'] // or whatever
+  presets: ['@babel/preset-env'] // or whatever
 })

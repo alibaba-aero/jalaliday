@@ -8,7 +8,7 @@
   "jsnext:main": "dist/jalaliday.es.js",
   "scripts": {
     "test": "jest",
-    "lint": "eslint src/* test/* build/*",
+    "lint": "eslint src/* test/*",
     "build": "bili",
     "release": "standard-version $* && git push --follow-tags && npm publish",
     "prepublishOnly": "npm run build"
@@ -46,19 +46,19 @@
     "url": "https://github.com/alibaba-aero/jalaliday.git"
   },
   "devDependencies": {
-    "babel-preset-env": "^1.7.0",
-    "bili": "^3.1.2",
+    "@babel/preset-env": "^7.3.4",
+    "bili": "^4.4.0",
     "codecov": "^3.2.0",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.10.0",
-    "eslint-plugin-jest": "^21.15.0",
-    "jest": "^22.4.3",
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jest": "^22.3.0",
+    "jest": "^24.3.1",
     "mockdate": "^2.0.2",
     "pre-commit": "^1.2.2",
-    "standard-version": "latest"
+    "standard-version": "5.0.1"
   },
   "dependencies": {
-    "dayjs": "^1.7.7"
+    "dayjs": "^1.8.9"
   }
 }
