@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.2](https://github.com/alibaba-aero/jalaliday/compare/v2.2.1...v2.2.2) (2019-03-14)
+
+
+### Bug Fixes
+
+* **toArray:** override toArray if exists ([00c6548](https://github.com/alibaba-aero/jalaliday/commit/00c6548))
+
+
+
 ## [2.2.1](https://github.com/alibaba-aero/jalaliday/compare/v2.2.0...v2.2.1) (2019-03-10)
 
 
