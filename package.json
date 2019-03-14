@@ -59,6 +59,6 @@
     "standard-version": "5.0.1"
   },
   "dependencies": {
-    "dayjs": "^1.8.9"
+    "dayjs": "^1.8.10"
   }
 }

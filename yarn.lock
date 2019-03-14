@@ -1994,9 +1994,9 @@ dateformat@^3.0.0:
   integrity sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==
 
 dayjs@^1.8.9:
-  version "1.8.9"
-  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.9.tgz#8b5fda2f995ff5f29705894e1d23240f7f674f61"
-  integrity sha512-/LPzoQ77NiXf566p5babPBkqegpJ94koAQ0vUfkcfWYcuvzOTgr+N9V4IOnQ3H05Su/9dpFNOV1iPvEhAsRscw==
+  version "1.8.10"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.10.tgz#fc35a976ccac2a9c44b50485a06c4a5ecf5d1b37"
+  integrity sha512-U+7kBBkJzPWww0vNeMkaBeJwnkivTACoajm+bTfwparjFcPI6/5JSQN40WVnX6yCsm20oGf1SkMkIIp4m/boAw==
 
 debug@^2.2.0, debug@^2.3.3, debug@^2.6.8, debug@^2.6.9:
   version "2.6.9"
