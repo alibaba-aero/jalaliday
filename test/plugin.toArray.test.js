@@ -1,7 +1,9 @@
 import MockDate from 'mockdate'
 import dayjs from 'dayjs'
+import toArray from 'dayjs/plugin/toArray'
 import jalali from '../src'
 
+dayjs.extend(toArray)
 dayjs.extend(jalali)
 dayjs.calendar('jalali')
 

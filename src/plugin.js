@@ -271,11 +271,17 @@ export default (o, Dayjs, dayjs) => {
     return this.endOf(C.M).$jD
   }
 
-  proto.toArray = function () {
-    if (!$isJalali(this)) {
-      return oldToArray.bind(this)()
+  /**
+   * toArray function moved to official plugin
+   * Check function existence before override
+   */
+  if (oldToArray) {
+    proto.toArray = function () {
+      if (!$isJalali(this)) {
+        return oldToArray.bind(this)()
+      }
+      return [this.$jy, this.$jM, this.$jD, this.$H, this.$m, this.$s, this.$ms]
     }
-    return [this.$jy, this.$jM, this.$jD, this.$H, this.$m, this.$s, this.$ms]
   }
 
   proto.clone = function () {
