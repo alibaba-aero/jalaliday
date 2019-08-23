@@ -36,3 +36,8 @@ jobs:
       - run:
           name: Coverage
           command: yarn codecov
+      
+      # Build
+      - run:
+          name: Build
+          command: yarn build

@@ -3,16 +3,27 @@
   "version": "2.2.2",
   "description": "Persian (Jalali, Khorshidi) Plugin for Day.js",
   "main": "dist/jalaliday.cjs.min.js",
-  "web": "dist/jalaliday.min.js",
-  "module": "dist/jalaliday.es.js",
-  "jsnext:main": "dist/jalaliday.es.js",
+  "web": "dist/jalaliday.umd.min.js",
+  "module": "dist/jalaliday.esm.js",
+  "jsnext:main": "dist/jalaliday.esm.js",
   "scripts": {
-    "test": "jest",
+    "test": "yarn build && jest",
     "lint": "eslint src/* test/*",
-    "build": "bili",
+    "build": "bili && yarn size",
     "release": "standard-version $* && git push --follow-tags && npm publish",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "size": "size-limit"
   },
+  "size-limit": [
+    {
+      "limit": "2.99 KB",
+      "path": "dist/jalaliday.umd.min.js"
+    },
+    {
+      "limit": "2.99 KB",
+      "path": "dist/jalaliday.cjs.min.js"
+    }
+  ],
   "pre-commit": [
     "lint"
   ],
@@ -46,19 +57,20 @@
     "url": "https://github.com/alibaba-aero/jalaliday.git"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.3.4",
-    "bili": "^3.4.2",
-    "codecov": "^3.2.0",
-    "eslint": "^5.15.1",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jest": "^22.3.0",
-    "jest": "^24.3.1",
-    "mockdate": "^2.0.2",
+    "@babel/preset-env": "^7.5.5",
+    "@size-limit/preset-small-lib": "^2.1.1",
+    "bili": "^4.8.1",
+    "codecov": "^3.5.0",
+    "dayjs": "^1.8.15",
+    "eslint": "^6.2.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.15.2",
+    "gzip-size-cli": "^3.0.0",
+    "jest": "^24.9.0",
+    "mockdate": "^2.0.5",
     "pre-commit": "^1.2.2",
-    "standard-version": "5.0.1"
-  },
-  "dependencies": {
-    "dayjs": "^1.8.10"
+    "size-limit": "^2.1.1",
+    "standard-version": "7.0.0"
   }
 }

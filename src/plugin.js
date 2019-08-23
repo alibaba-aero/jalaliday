@@ -4,13 +4,13 @@ import * as C from './constant'
 export default (o, Dayjs, dayjs) => {
   const proto = Dayjs.prototype
   const U = proto.$utils()
-  const $isJalali = v => v.$C === 'jalali'
+  const $isJalali = (v) => v.$C === 'jalali'
   const $prettyUnit = U.prettyUnit || U.p
   const $isUndefined = U.isUndefined || U.u
   const $padStart = U.padStart || U.s
   const $monthDiff = U.monthDiff || U.m
   const $absFloor = U.absFloor || U.a
-  const wrapperOfTruth = action => function (...args) {
+  const wrapperOfTruth = (action) => function (...args) {
     const unsure = action.bind(this)(...args)
     unsure.$C = this.$C
     if (unsure.isJalali()) {
@@ -243,25 +243,30 @@ export default (o, Dayjs, dayjs) => {
     return float ? result : $absFloor(result)
   }
 
-  proto.year = function () {
-    if (!$isJalali(this)) {
-      return oldYear.bind(this)()
-    }
-    return this.$jy
+  proto.$g = function (input, get, set) {
+    if ($isUndefined(input)) return this[get]
+    return this.set(set, input)
   }
 
-  proto.month = function () {
+  proto.year = function (input) {
     if (!$isJalali(this)) {
-      return oldMonth.bind(this)()
+      return oldYear.bind(this)(input)
     }
-    return this.$jM
+    return this.$g(input, '$jy', C.Y)
   }
 
-  proto.date = function () {
+  proto.month = function (input) {
     if (!$isJalali(this)) {
-      return oldDate.bind(this)()
+      return oldMonth.bind(this)(input)
     }
-    return this.$jD
+    return this.$g(input, '$jM', C.M)
+  }
+
+  proto.date = function (input) {
+    if (!$isJalali(this)) {
+      return oldDate.bind(this)(input)
+    }
+    return this.$g(input, '$jD', C.D)
   }
 
   proto.daysInMonth = function () {
