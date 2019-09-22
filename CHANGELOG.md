@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.4](https://github.com/alibaba-aero/jalaliday/compare/v2.2.3...v2.2.4) (2019-09-22)
+
+
+### Bug Fixes
+
+* **add-month:** prevent exceed from days of month ([9835799](https://github.com/alibaba-aero/jalaliday/commit/9835799))
+
 ### [2.2.3](https://github.com/alibaba-aero/jalaliday/compare/v2.2.2...v2.2.3) (2019-08-23)
 
 
