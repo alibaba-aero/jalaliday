@@ -61,7 +61,7 @@ test('add 11 months in the middle of the year', () => {
   expect(date2.date()).toEqual(date.date())
 })
 
-describe('add two date', () => {
+describe('add 100 days', () => {
   let a = null
   let b = null
 
@@ -72,5 +72,19 @@ describe('add two date', () => {
 
   it('add date', () => {
     expect(a.add(100, 'day')).toEqual(b)
+  })
+})
+
+describe('add 1 month in shahrivar 31th', () => {
+  let a = null
+  let b = null
+
+  beforeEach(() => {
+    a = dayjs('1397/06/31', { jalali: true })
+    b = dayjs('1397/07/30', { jalali: true })
+  })
+
+  it('add date', () => {
+    expect(a.add(1, 'month')).toEqual(b)
   })
 })

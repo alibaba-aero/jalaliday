@@ -178,7 +178,9 @@ export default (o, Dayjs, dayjs) => {
     if (['M', C.M].indexOf(unit) > -1) {
       const n = this.$jM + number
       const y = n < 0 ? -Math.ceil(-n / 12) : parseInt(n / 12, 10)
-      return this.add(y, C.Y).set(C.M, n - (y * 12))
+      const d = this.$jD
+      const x = this.set(C.D, 1).add(y, C.Y).set(C.M, n - (y * 12))
+      return x.set(C.D, Math.min(x.daysInMonth(), d))
     }
     if (['y', C.Y].indexOf(unit) > -1) {
       return instanceFactory(C.Y, this.$jy)
