@@ -11,6 +11,15 @@ All notable changes to this project will be documented in this file. See [standa
 
 
 
+## [2.2.5](https://github.com/alibaba-aero/jalaliday/compare/v2.2.4...v2.2.5) (2019-10-31)
+
+
+### Bug Fixes
+
+* **$set:** prevent date from exceeding month limit ([#19](https://github.com/alibaba-aero/jalaliday/issues/19)) ([66c8e76](https://github.com/alibaba-aero/jalaliday/commit/66c8e76))
+
+
+
 ## [2.2.4](https://github.com/alibaba-aero/jalaliday/compare/v2.2.3...v2.2.4) (2019-09-22)
 
 
