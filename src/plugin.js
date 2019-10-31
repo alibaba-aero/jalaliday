@@ -141,9 +141,9 @@ export default (o, Dayjs, dayjs) => {
     const unit = $prettyUnit(units)
     const instanceFactory = (d, m, y = this.$jy) => {
       const [gy, gm, gd] = jdate.G(y, m + 1, d)
-      this.$d.setDate(gd)
-      this.$d.setMonth(gm - 1)
       this.$d.setFullYear(gy)
+      this.$d.setMonth(gm - 1)
+      this.$d.setDate(gd)
       return this
     }
     switch (unit) {
