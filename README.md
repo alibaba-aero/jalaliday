@@ -32,7 +32,7 @@ dayjs.extend(jalaliday)
 ```
 
 ### Changing calendar
-if you want to all new instanses of dayjs use `jalali` calendar, you can set default calendar
+If you want to all new instanses of dayjs use `jalali` calendar, you can set default calendar
 ```javascript
 dayjs.calendar('jalali') // Jalali Calendar
 // OR
@@ -42,6 +42,16 @@ also you can create a jalali date without changing default calendar
 ```javascript
 const date = dayjs()
 const jalaliDate = date.calendar('jalali')
+```
+
+### Parse Date
+- Parse Gregory date 
+```js
+const date = dayjs('2018-04-04T16:00:00.000Z');
+```
+- Parse Jalali date
+```js
+const date = dayjs('1398-10-17', { jalali: true });
 ```
 
 with combination of `calendar` and `locale` we have multi language for real
