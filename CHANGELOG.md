@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.7](https://github.com/alibaba-aero/jalaliday/compare/v2.2.6...v2.2.7) (2020-01-26)
+
 ### [2.2.6](https://github.com/alibaba-aero/jalaliday/compare/v2.2.5...v2.2.6) (2020-01-26)
 
 
