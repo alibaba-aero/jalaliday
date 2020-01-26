@@ -112,7 +112,8 @@ export default (o, Dayjs, dayjs) => {
     const instanceFactory = (d, m, y = this.$jy) => {
       const [gy, gm, gd] = jdate.G(y, m + 1, d)
       const ins = wrapper(new Date(gy, gm - 1, gd), this)
-      return isStartOf ? ins : ins.endOf(C.D)
+      return (isStartOf ? ins : ins.endOf(C.D))
+        .$set('hour', 1) // prevent daylight saving issue in safari
     }
     const WModifier = (this.$W + (7 - dayjs.$fdow)) % 7
     switch (unit) {
