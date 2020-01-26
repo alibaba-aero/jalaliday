@@ -1,6 +1,13 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [2.2.6](https://github.com/alibaba-aero/jalaliday/compare/v2.2.5...v2.2.6) (2020-01-26)
+
+
+### Bug Fixes
+
+* **safari:** add one hour to startOf to prevent safari issue ([9c512ce](https://github.com/alibaba-aero/jalaliday/commit/9c512ce))
 
 ## [2.2.5](https://github.com/alibaba-aero/jalaliday/compare/v2.2.4...v2.2.5) (2019-10-31)
 
