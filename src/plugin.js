@@ -66,6 +66,7 @@ export default (o, Dayjs, dayjs) => {
   const wrapper = function (date, instance) {
     return dayjs(date, {
       locale: instance.$L,
+      utc: instance.$u,
       calendar: instance.$C
     })
   }
