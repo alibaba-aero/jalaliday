@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.8](https://github.com/alibaba-aero/jalaliday/compare/v2.2.7...v2.2.8) (2020-02-01)
+
+
+### Bug Fixes
+
+* **utc:** add utc property to wrapper ([c9e83ca](https://github.com/alibaba-aero/jalaliday/commit/c9e83ca))
+* **utc:** add utc property to wrapper ([#22](https://github.com/alibaba-aero/jalaliday/issues/22)) ([92dba28](https://github.com/alibaba-aero/jalaliday/commit/92dba28))
+
 ### [2.2.7](https://github.com/alibaba-aero/jalaliday/compare/v2.2.6...v2.2.7) (2020-01-26)
 
 ### [2.2.6](https://github.com/alibaba-aero/jalaliday/compare/v2.2.5...v2.2.6) (2020-01-26)
