@@ -1,6 +1,6 @@
 {
   "name": "jalaliday",
-  "version": "2.2.8",
+  "version": "2.3.0",
   "description": "Persian (Jalali, Khorshidi) Plugin for Day.js",
   "main": "dist/jalaliday.cjs.min.js",
   "web": "dist/jalaliday.umd.min.js",
@@ -18,12 +18,16 @@
     {
       "limit": "2.99 KB",
       "path": "dist/jalaliday.umd.min.js",
-      "ignore": ["dayjs"]
+      "ignore": [
+        "dayjs"
+      ]
     },
     {
       "limit": "2.99 KB",
       "path": "dist/jalaliday.cjs.min.js",
-      "ignore": ["dayjs"]
+      "ignore": [
+        "dayjs"
+      ]
     }
   ],
   "pre-commit": [

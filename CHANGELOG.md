@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/alibaba-aero/jalaliday/compare/v2.2.8...v2.3.0) (2020-02-29)
+
+
+### Features
+
+* **weekday:** support weekday plugin ([#24](https://github.com/alibaba-aero/jalaliday/issues/24)) ([5b29733](https://github.com/alibaba-aero/jalaliday/commit/5b29733))
+
 ### [2.2.8](https://github.com/alibaba-aero/jalaliday/compare/v2.2.7...v2.2.8) (2020-02-01)
 
 
