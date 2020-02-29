@@ -1,3 +1,5 @@
+import fa from 'dayjs/locale/fa'
+
 import jdate from './calendar'
 import * as C from './constant'
 
@@ -61,7 +63,7 @@ export default (o, Dayjs, dayjs) => {
   }
 
   dayjs.en.jmonths = 'Farvardin_Ordibehesht_Khordaad_Tir_Mordaad_Shahrivar_Mehr_Aabaan_Aazar_Dey_Bahman_Esfand'.split('_')
-  dayjs.locale('fa', C.fa, true)
+  dayjs.locale('fa', { ...fa, ...C.fa }, true)
 
   const wrapper = function (date, instance) {
     return dayjs(date, {

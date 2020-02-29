@@ -16,11 +16,11 @@
   },
   "size-limit": [
     {
-      "limit": "2.99 KB",
+      "limit": "5.40 KB",
       "path": "dist/jalaliday.umd.min.js"
     },
     {
-      "limit": "2.99 KB",
+      "limit": "5.30 KB",
       "path": "dist/jalaliday.cjs.min.js"
     }
   ],
