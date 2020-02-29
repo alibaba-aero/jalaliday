@@ -16,12 +16,14 @@
   },
   "size-limit": [
     {
-      "limit": "5.40 KB",
-      "path": "dist/jalaliday.umd.min.js"
+      "limit": "2.99 KB",
+      "path": "dist/jalaliday.umd.min.js",
+      "ignore": ["dayjs"]
     },
     {
-      "limit": "5.30 KB",
-      "path": "dist/jalaliday.cjs.min.js"
+      "limit": "2.99 KB",
+      "path": "dist/jalaliday.cjs.min.js",
+      "ignore": ["dayjs"]
     }
   ],
   "pre-commit": [

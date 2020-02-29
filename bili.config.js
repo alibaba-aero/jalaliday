@@ -8,5 +8,6 @@ module.exports = {
       'umd-min'
     ],
     sourceMap: false
-  }
+  },
+  externals: ['dayjs']
 }
