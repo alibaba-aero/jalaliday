@@ -11,4 +11,5 @@ declare module 'dayjs' {
 
     isJalali(): boolean;
   }
+  interface FormatObject { jalali?: boolean }
 }
